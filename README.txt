@@ -1,1 +1,4 @@
-#The code will be here
+Endpointy:
+- /Game/Post
+- /Game/Get
+- /Game/Delete
