@@ -24,17 +24,17 @@ func CreateBoard() {
 	Switch = 1
 }
 
-func GameInput(w http.ResponseWriter, r *http.Request, data Pos) {
+func GameInput(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		var holder Pos
 		json.NewDecoder(r.Body).Decode(&holder)
 
-		if Positions[data.Id].Value == "" {
+		if Positions[holder.Id].Value == "" {
 			switch Switch {
 			case 1:
-				Positions[data.Id].Value = "O"
+				Positions[holder.Id].Value = "O"
 			case 2:
-				Positions[data.Id].Value = "X"
+				Positions[holder.Id].Value = "X"
 			}
 		}
 	}
