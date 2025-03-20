@@ -37,5 +37,5 @@ func main() {
 	http.HandleFunc("/Game/Delete", GameDelete)
 
 	fmt.Print("Server is running")
-	http.ListenAndServe(":25025", router)
+	http.ListenAndServe("localhost:25025", router)
 }
