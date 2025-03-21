@@ -37,6 +37,9 @@ func GameInput(w http.ResponseWriter, r *http.Request) {
 				Positions[holder.Id].Value = "X"
 			}
 		}
+
+		w.WriteHeader(http.StatusOK)
+		w.Header().Add("Action", "Success")
 	}
 }
 
@@ -46,17 +49,22 @@ func GameGet(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 
 		holder := Positions
-		data, err := json.Marshal(holder)
-		if err != nil {
-			fmt.Println(err)
-		}
-		w.Write(data)
+
+		w.WriteHeader(http.StatusOK)
+		w.Header().Add("Action", "Success")
+
+		json.NewEncoder(w).Encode(holder)
 	}
 }
 
 func GameDelete(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "DELETE" {
+		for i := 0; i < 9; i++ {
+			Positions[i].Value = ""
+		}
 
+		w.WriteHeader(http.StatusOK)
+		w.Header().Add("Action", "Success")
 	}
 }
 
